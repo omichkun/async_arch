@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Tasks</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>User</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= link_to task.title, task %></td>
+      <td><%= task.description %></td>
+      <td><%= task.task_user %></td>
+      <td><%= task.status %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>
+<br>
+<br>
+<br>
+<%= form_with url: assign_all_tasks_path, method: :post do |f| %>
+  <%= f.submit 'ASSIGN ALL TASKS', class: 'btn' %>
+<% end %>
