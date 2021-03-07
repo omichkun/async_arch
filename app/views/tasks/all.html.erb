@@ -2,6 +2,19 @@
 
 <h1>All Tasks</h1>
 
+<div class="row">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <%= link_to 'New Task', new_task_path, class: 'btn btn-light' %>
+      </div>
+      <div class="offset-md-7 col-md-3">
+
+        <%= @button.button %>
+      </div>
+    </div>
+  </div>
+</div>
 <table class="table">
   <thead>
   <tr>
@@ -23,13 +36,3 @@
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
-<br>
-<br>
-<br>
-<%= form_with url: assign_all_tasks_path, method: :post do |f| %>
-  <%= f.submit 'ASSIGN ALL TASKS', class: 'btn' %>
-<% end %>

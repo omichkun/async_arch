@@ -2,12 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.open
   end
 
   def all
     # очень неоптимально, но для попугов сойдет
-    @tasks = Task.all.map { |task| TaskPresenter.new(task) }
+    @tasks = Task.all.order(:status, :created_at).map { |task| TaskPresenter.new(task) }
+    @button = AssignAllTasksPresenter.new(current_user, view_context)
   end
 
   def assign_all
@@ -19,7 +20,11 @@ class TasksController < ApplicationController
   end
 
   def close
-    return error!(status: 403) if TaskPolicy.new(current_user).can_close?(task)
+    task = Task.find(params[:id])
+    return error!(status: 403) unless TaskPolicy.new(current_user).can_close?(task)
+
+    Tasks::Close.call(task)
+    redirect_to tasks_path
   end
 
   def show

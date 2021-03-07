@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Status</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -17,6 +18,7 @@
         <td><%= link_to task.title, task %></td>
         <td><%= task.description %></td>
         <td><%= task.status %></td>
+        <td><%= link_to 'Close task', close_task_path(task.id), class: 'btn btn-sm btn-light', method: :post %></td>
       </tr>
     <% end %>
   </tbody>

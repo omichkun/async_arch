@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :tasks, except: [:delete, :edit, :update] do
-    get :all, on: :collection
-    post :assign_all, on: :collection
+    post :close, on: :member
+    collection do
+      get :all
+      post :assign_all
+    end
   end
   resources :users, except: [:delete]
 
