@@ -2,17 +2,8 @@ omich.kun@gmail.com
 
 
 ## Как развернуть
-Сначала запустить постгрес:
-
 ```
-docker run -d --name sb-postgres -p 5432:5432 --network=popug_network -v /Users/Omich/all/projects/arch_db:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123 postgres:10
-```
-
-Потом сбилдить и запустить контейнер:
-
-```
-docker build . -t async_arch
-docker run --rm -d -p 3000:3000 --network=popug_network -v $PWD:/usr/src/async_architecture --name async_arch async_arch
+docker-compose up -d 
 ```
 
 При первом запуске запустить rake-таску `rails initial:create`, которая создаст роли и юзера.
