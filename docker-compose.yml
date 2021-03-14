@@ -1,0 +1,12 @@
+services:
+  main:
+    build: ./task_tracker
+    ports: 
+      - '3000:3000'
+
+  postgres:
+    image: postgres:10
+    environment: 
+      POSTGRES_PASSWORD: 123
+    volumes: 
+      - ./arch_db:/var/lib/postgresql/data
