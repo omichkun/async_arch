@@ -3,10 +3,16 @@ services:
     build: ./task_tracker
     ports: 
       - '3000:3000'
+  auth:
+    build: ./auth
+    ports: 
+      - '3001:3000'
+#    environment:
+#      RAILS_ENV: production
 
   postgres:
     image: postgres:10
     environment: 
       POSTGRES_PASSWORD: 123
-    volumes: 
+    volumes:
       - ./arch_db:/var/lib/postgresql/data
