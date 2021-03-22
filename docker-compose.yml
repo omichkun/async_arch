@@ -3,10 +3,14 @@ services:
     build: ./task_tracker
     ports: 
       - '3000:3000'
+    volumes:
+      - ./task_tracker:/usr/src/async_architecture
   auth:
     build: ./auth
     ports: 
       - '3001:3000'
+    volumes:
+      - ./auth:/usr/src/async_architecture
 #    environment:
 #      RAILS_ENV: production
 

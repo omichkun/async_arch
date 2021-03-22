@@ -6,9 +6,7 @@ class MainController < ApplicationController
   end
 
   def login
-    user = User.find_by(id: params[:id])
-    session[:user] = user.id if user.present?
-    redirect_to tasks_path
+    redirect_to ENV['AUTH_URL']
   end
 
 end

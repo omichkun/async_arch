@@ -2,12 +2,12 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class Keepa < OmniAuth::Strategies::OAuth2
-      option :name, :keepa
+    class Popugi < OmniAuth::Strategies::OAuth2
+      option :name, :popugi
 
       option :client_options, {
-          :site => "http://localhost:3000/oauth/authorize",
-          :authorize_url => "http://localhost:3000/oauth/authorize"
+          :site => "http://localhost:3001/oauth/authorize",
+          :authorize_url => "http://localhost:3001/oauth/authorize"
       }
 
       uid { raw_info["public_id"] }

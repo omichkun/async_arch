@@ -1,9 +1,9 @@
 class AddRoleToAccount < ActiveRecord::Migration[6.0]
   def up
     execute <<-SQL
-      CREATE TYPE account_roles AS ENUM ('admin', 'accounting_clerk', 'repairman', 'employee');
+      CREATE TYPE account_roles AS ENUM ('admin', 'manager', 'popug');
     SQL
-    add_column :accounts, :role, :account_roles, null: false, default: 'employee'
+    add_column :accounts, :role, :account_roles, null: false, default: 'popug'
   end
 
   def down

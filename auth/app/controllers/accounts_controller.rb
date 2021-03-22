@@ -37,14 +37,14 @@ class AccountsController < ApplicationController
             position: @account.position
           }
         }
-        Produce.call(event.to_json, topic: 'accounts-stream')
+        # Produce.call(event.to_json, topic: 'accounts-stream')
 
         if new_role
           event = {
             event_name: 'AccountRoleChanged',
-            data: { public_id: public_id, role: role }
+            data: { public_id: @account.public_id, role: role }
           }
-          Producer.call(event.to_json, topic: 'accounts')
+          # Producer.call(event.to_json, topic: 'accounts')
         end
 
         # --------------------------------------------------------------------
@@ -70,7 +70,7 @@ class AccountsController < ApplicationController
       event_name: 'AccountDeleted',
       data: { public_id: @account.public_id }
     }
-    Producer.call(event.to_json, topic: 'accounts-stream')
+    # Producer.call(event.to_json, topic: 'accounts-stream')
     # --------------------------------------------------------------------
 
     respond_to do |format|

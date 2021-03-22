@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   private
   def check_auth
-    redirect_to root_path unless user_logged_in?
+    auth_url = "#{ENV['AUTH_URL']}/oauth/authorize?client_id=#{ENV['AUTH_APP_ID']}&redirect_uri=#{CGI::escape(ENV['ROOT_URL'])}&response_type=code&scope=#{ENV['AUTH_SCOPE']}"
+    redirect_to auth_url unless user_logged_in?
   end
 
   def user_logged_in?

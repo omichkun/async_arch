@@ -16,9 +16,8 @@ class Account < ApplicationRecord
 
   enum role: {
     admin: 'admin',
-    accounting_clerk: 'accounting_clerk',
-    repairman: 'repairman',
-    employee: 'employee'
+    manager: 'manager',
+    popug: 'popug'
   }
 
   after_create do
@@ -34,7 +33,7 @@ class Account < ApplicationRecord
         position: account.position
       }
     }
-    Producer.call(event.to_json, topic: 'accounts-stream')
+    # Producer.call(event.to_json, topic: 'accounts-stream')
     # --------------------------------------------------------------------
   end
 end
