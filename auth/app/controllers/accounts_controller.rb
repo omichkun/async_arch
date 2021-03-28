@@ -1,11 +1,12 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
-  before_action :authenticate_account!, only: [:index]
+  before_action :authenticate_account!, only: [:index, :current]
 
   # GET /accounts
   # GET /accounts.json
   def index
+    redirect_to 'http://localhost:3000/tasks' if current_account.role != 'admin'
     @accounts = Account.all
   end
 
@@ -14,6 +15,9 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.json  { render :json => current_account }
     end
+  end
+
+  def me
   end
 
   # GET /accounts/1/edit

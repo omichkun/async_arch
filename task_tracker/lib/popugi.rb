@@ -3,11 +3,12 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Popugi < OmniAuth::Strategies::OAuth2
-      option :name, :popugi
+      option :name, 'popugi'
+
 
       option :client_options, {
-          :site => "http://localhost:3001/oauth/authorize",
-          :authorize_url => "http://localhost:3001/oauth/authorize"
+          :site => "http://auth:3000/",
+          :authorize_url => "http://auth:3000/oauth/authorize"
       }
 
       uid { raw_info["public_id"] }

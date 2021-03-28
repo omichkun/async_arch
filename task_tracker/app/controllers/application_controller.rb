@@ -3,12 +3,12 @@ class ApplicationController < ActionController::Base
 
   private
   def check_auth
-    auth_url = "#{ENV['AUTH_URL']}/oauth/authorize?client_id=#{ENV['AUTH_APP_ID']}&redirect_uri=#{CGI::escape(ENV['ROOT_URL'])}&response_type=code&scope=#{ENV['AUTH_SCOPE']}"
+    auth_url = "#{ENV['AUTH_URL']}/oauth/authorize?client_id=#{ENV['AUTH_APP_ID']}&redirect_uri=#{CGI::escape(ENV['CALLBACK_URL'])}&response_type=code&scope=#{ENV['AUTH_SCOPE']}"
     redirect_to auth_url unless user_logged_in?
   end
 
   def user_logged_in?
-    session[:user].present?
+    session[:user].present? && session[:token].present? && session[:token_expires_at].present? && Time.at(session[:token_expires_at]) > Time.now
   end
 
   def error!(status: 422)
@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user])
+    @current_user ||= User.find_by(public_id: session[:user])
   end
 end

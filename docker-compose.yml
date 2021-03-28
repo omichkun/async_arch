@@ -5,13 +5,18 @@ services:
       - '3000:3000'
     volumes:
       - ./task_tracker:/usr/src/async_architecture
+    tty: true
+    stdin_open: true
+
   auth:
     build: ./auth
     ports: 
       - '3001:3000'
     volumes:
       - ./auth:/usr/src/async_architecture
-#    environment:
+    tty: true
+    stdin_open: true
+  #    environment:
 #      RAILS_ENV: production
 
   postgres:
