@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   resources :accounts, only: [:edit, :update, :destroy]
   get '/accounts/current', to: 'accounts#current'
+  get '/accounts/me', to: 'accounts#me'
 end

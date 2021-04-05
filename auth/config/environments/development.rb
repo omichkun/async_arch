@@ -8,7 +8,10 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.hosts << "auth"
+  config.hosts << "auth:3001"
+  config.hosts << /auth/
+  config.hosts << /auth:3001/
   # Show full error reports.
   config.consider_all_requests_local = true
 

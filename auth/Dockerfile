@@ -19,7 +19,7 @@ COPY ./Gemfile* $SRC_PATH
 
 RUN bundle install
 RUN rails webpacker:install
+RUN rails db:migrate
 COPY . $SRC_PATH
-RUN rm -rf $SRC_PATH/tmp/pids
 
 CMD ["rails", "s", "-b", "0.0.0.0"]

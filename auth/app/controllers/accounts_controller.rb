@@ -6,6 +6,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
+    redirect_to 'http://localhost:3000/tasks' if current_account.role != 'admin'
     @accounts = Account.all
   end
 
@@ -14,6 +15,9 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.json  { render :json => current_account }
     end
+  end
+
+  def me
   end
 
   # GET /accounts/1/edit
@@ -34,17 +38,17 @@ class AccountsController < ApplicationController
             public_id: @account.public_id,
             email: @account.email,
             full_name: @account.full_name,
-            position: @account.position
+            active: @account.active
           }
         }
-        Produce.call(event.to_json, topic: 'accounts-stream')
+        WaterDrop::SyncProducer.call(event.to_json, topic: 'accounts_stream')
 
         if new_role
           event = {
             event_name: 'AccountRoleChanged',
-            data: { public_id: public_id, role: role }
+            data: { public_id: @account.public_id, role: @account.role }
           }
-          Producer.call(event.to_json, topic: 'accounts')
+          WaterDrop::SyncProducer.call(event.to_json, topic: 'accounts')
         end
 
         # --------------------------------------------------------------------
@@ -70,7 +74,7 @@ class AccountsController < ApplicationController
       event_name: 'AccountDeleted',
       data: { public_id: @account.public_id }
     }
-    Producer.call(event.to_json, topic: 'accounts-stream')
+    # Producer.call(event.to_json, topic: 'accounts-stream')
     # --------------------------------------------------------------------
 
     respond_to do |format|

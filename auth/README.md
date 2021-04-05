@@ -1,24 +1,11 @@
-# README
+При развертывании: 
+- открыть http://localhost:3001/
+- зарегистрироваться
+- сменить у себя роль на админа
+- зайти на http://localhost:3001/oauth/applications
+- добавить приложение
+- в качестве коллбэка указать http://localhost:3000/auth/popugi/callback
+- uid и secret и scope поместить в .env-файл сервиса task_tracker в переменные AUTH_APP_ID, AUTH_SECRET и AUTH_SCOPE соответственно
+- docker-compose down && docker-compose up -d 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Вроде после этого должно заработать все

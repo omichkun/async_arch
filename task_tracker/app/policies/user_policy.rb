@@ -4,7 +4,7 @@ class UserPolicy
   end
 
   def is_admin?
-    return true if user.role.name == 'administrator'
+    return true if user.role == 'admin'
 
     false
   end

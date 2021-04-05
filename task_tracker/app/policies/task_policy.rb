@@ -4,7 +4,7 @@ class TaskPolicy
   end
 
   def can_assign?
-    return true if %w[administrator manager].include?(user.role.name)
+    return true if %w[admin manager].include?(user.role)
 
     false
   end

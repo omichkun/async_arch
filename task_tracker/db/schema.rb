@@ -10,16 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_212355) do
+ActiveRecord::Schema.define(version: 2021_04_05_025255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+  enable_extension "uuid-ossp"
 
   create_table "tasks", force: :cascade do |t|
     t.string "title"
@@ -28,19 +23,21 @@ ActiveRecord::Schema.define(version: 2021_03_04_212355) do
     t.string "status", default: "open"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "public_id", default: -> { "uuid_generate_v4()" }, null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password_digest"
+    t.string "role"
     t.string "email"
-    t.bigint "role_id", null: false
+    t.string "public_id"
+    t.boolean "active"
+    t.string "token"
+    t.datetime "token_expires_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "tasks", "users"
-  add_foreign_key "users", "roles"
 end

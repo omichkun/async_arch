@@ -5,8 +5,11 @@ omich.kun@gmail.com
 ```
 docker-compose up -d 
 ```
+Таск-трекер находится по пути http://localhost:3000
 
-При первом запуске запустить rake-таску `rails initial:create`, которая создаст роли и юзера.
+Сервис аутентификации: http://localhost:3001
+
+Сервис биллинга: http://localhost:3002
 
 ## Общие требования
 

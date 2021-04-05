@@ -1,5 +1,5 @@
 class TaskPresenter < SimpleDelegator
   def task_user
-    self.try(:user).present? ? self.user.username : 'unassigned'
+    self.try(:user).present? ? self.user.username || self.user.email : '-'
   end
 end
