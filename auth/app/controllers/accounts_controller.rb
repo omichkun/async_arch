@@ -38,10 +38,10 @@ class AccountsController < ApplicationController
             public_id: @account.public_id,
             email: @account.email,
             full_name: @account.full_name,
-            position: @account.position
+            active: @account.active
           }
         }
-        WaterDrop::SyncProducer.call(event.to_json, topic: 'accounts-stream')
+        WaterDrop::SyncProducer.call(event.to_json, topic: 'accounts_stream')
 
         if new_role
           event = {

@@ -319,6 +319,7 @@ DEPENDENCIES
   spring
   turbolinks (~> 5)
   tzinfo-data
+  waterdrop (~> 1.4)
   webdrivers
   webpacker (~> 5.0)
 

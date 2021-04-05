@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       post :assign_all
     end
   end
-  resources :users, except: [:delete]
 
   get 'login' => 'main#login', as: :login
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

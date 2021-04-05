@@ -9,11 +9,27 @@ services:
     tty: true
     stdin_open: true
 
-  karafka:
+  karafka_main:
     image: main
     command: bundle exec karafka server
     volumes:
       - ./task_tracker:/usr/src/async_architecture
+
+  billing:
+    build: ./billing_service
+    image: billing
+    ports:
+      - '3002:3000'
+    volumes:
+      - ./billing_service:/usr/src/async_architecture
+    tty: true
+    stdin_open: true
+
+  karafka_billing:
+    image: billing
+    command: bundle exec karafka server
+    volumes:
+      - ./billing_service:/usr/src/async_architecture
 
   auth:
     build: ./auth

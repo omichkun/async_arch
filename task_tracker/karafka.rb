@@ -23,7 +23,7 @@ Rails.application.eager_load!
 class KarafkaApp < Karafka::App
   setup do |config|
     config.kafka.seed_brokers = %w[kafka://broker:9092]
-    config.client_id = 'billing'
+    config.client_id = 'task_tracker'
     config.logger = Rails.logger
   end
 
@@ -35,16 +35,6 @@ class KarafkaApp < Karafka::App
   Karafka.monitor.subscribe(Karafka::Instrumentation::StdoutListener.new)
   Karafka.monitor.subscribe(Karafka::Instrumentation::ProctitleListener.new)
 
-  # Uncomment that in order to achieve code reload in development mode
-  # Be aware, that this might have some side-effects. Please refer to the wiki
-  # for more details on benefits and downsides of the code reload in the
-  # development mode
-  #
-  # Karafka.monitor.subscribe(
-  #   Karafka::CodeReloader.new(
-  #     APP_LOADER
-  #   )
-  # )
 
   consumer_groups.draw do
     topic :accounts do
