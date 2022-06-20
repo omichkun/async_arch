@@ -1,0 +1,4 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+gem "schema_registry", git: "https://github.com/davydovanton/event_schema_registry.git"

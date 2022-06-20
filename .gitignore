@@ -6,6 +6,8 @@
 
 arch_db/*
 **/.idea
+**/.DS_Store
+
 
 # Ignore bundler config.
 **/.bundle

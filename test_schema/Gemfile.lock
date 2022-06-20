@@ -1,0 +1,24 @@
+GIT
+  remote: https://github.com/davydovanton/event_schema_registry.git
+  revision: ec9d24ba6657a3db9ff6cf1e915d66190895d47f
+  specs:
+    schema_registry (1)
+      json-schema
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
+    public_suffix (4.0.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  schema_registry!
+
+BUNDLED WITH
+   1.16.0
